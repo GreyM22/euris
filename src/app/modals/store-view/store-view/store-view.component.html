@@ -1,0 +1,25 @@
+<section class="modal-header">
+  <h2>
+    {{store.name}}
+  </h2>
+</section>
+<section class="modal-body">
+  <div>
+    <div class="label">
+      Category
+    </div>
+    <div class="value">
+      {{store.category}}
+    </div>
+  </div>
+  <div >
+    <div class="label">
+      Employees
+    </div>
+    <div class="value">
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let employee of store.employees">{{employee}}</mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</section>

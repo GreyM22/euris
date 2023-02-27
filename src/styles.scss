@@ -1,1 +1,128 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@import "variables";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+//$euris-test-project-primary: mat.define-palette(mat.$indigo-palette);
+$euris-test-project-primary: mat.define-palette($primary-palette);
+//$euris-test-project-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$euris-test-project-accent: mat.define-palette($secondary-palette);
+
+// The warn palette is optional (defaults to red).
+$euris-test-project-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$euris-test-project-theme: mat.define-light-theme((
+  color: (
+    primary: $euris-test-project-primary,
+    accent: $euris-test-project-accent,
+    warn: $euris-test-project-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($euris-test-project-theme);
+
+$euris-test-project-typography-config: mat.define-typography-config(
+  $font-family: 'DM Sans, "Helvetica Neue", sans-serif',
+  //$body-1: mat.define-typography-level(14px, 18px, 400, DM Sans, normal),
+  //$input: mat.define-typography-level(inherit, 1.125, 400, DM Sans),
+);
+@include mat.all-component-typographies($euris-test-project-typography-config);
+
+@import 'commons';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: DM Sans, "Helvetica Neue", sans-serif; }
+* {
+  box-sizing: border-box;
+}
+/* styles for buttons */
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+}
+
+/* product view modal */
+.modal-page mat-dialog-container {
+  position: relative;
+  border-radius: 10px;
+  padding: 34px;
+  h2 {
+    color: var(--primary-color);
+  }
+  .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 16px;
+    column-gap: 10px;
+    .label {
+      font-weight: bold;
+    }
+  }
+  /* styles for the expansion panel */
+  mat-accordion {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  mat-expansion-panel {
+    box-shadow: none;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    h2 {
+      margin: 0;
+    }
+    button {
+      line-height: 40px;
+      width: 40px;
+      min-width: 32px;
+      display: inline-flex;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+  }
+  mat-expansion-panel-header {
+    padding: 0;
+  }
+  .mat-expansion-panel-content {
+    max-height: 30vh;
+    overflow: hidden scroll;
+  }
+  .mat-expansion-indicator {
+    width: 12px;
+    display: inline-flex;
+    justify-content: center;
+  }
+  .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
+    background-color: transparent;
+  }
+  mat-panel-title {
+    font-weight: bold;
+  }
+}
+/* custom scrollbar */
+.custom-scrollbar {
+  @extend %custom-scroll;
+}
+

@@ -1,0 +1,20 @@
+
+<div class="card" *ngFor="let product of products" [@slideOut]>
+  <div class="info" *ngFor="let key of displayedColumns; let i = index" [ngClass]="{'card-title': i === 0}">
+    {{product[key]}}
+  </div>
+  <div class="actions">
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      matTooltip="Click to view!"
+      matTooltipPosition="above"
+      (click)="viewProduct.emit(product.id)">
+      <mat-icon>visibility</mat-icon>
+    </button>
+    <button (click)="deleteProduct.emit(product.id)" matTooltipPosition="above" matTooltip="Click to delete!" color="warn" type="button" mat-flat-button color="warn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

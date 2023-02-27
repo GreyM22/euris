@@ -1,0 +1,4 @@
+<ng-container [ngSwitch]="type">
+  <mat-spinner *ngSwitchCase="'spinner'"></mat-spinner>
+  <mat-progress-bar *ngSwitchCase="'progress'" [mode]="progressMode"></mat-progress-bar>
+</ng-container>

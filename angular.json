@@ -7,7 +7,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -15,7 +16,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "euris",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -107,5 +108,7 @@
       }
     }
   },
-  "defaultProject": "euris-test-project"
+  "cli": {
+    "analytics": "7db61894-f723-4d00-abd2-0254845e6038"
+  }
 }

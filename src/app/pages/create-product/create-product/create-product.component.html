@@ -1,0 +1,85 @@
+<section class="header-top">
+  <h2>
+    Create a new product
+  </h2>
+</section>
+<section class="modal-body">
+  <form [formGroup]="form" class="custom-scrollbar">
+    <div class="full-width-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput>
+        <mat-error *ngIf="form.controls.title.hasError('required')">
+          Title is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls.title.hasError('minLength')">
+          Title needs to be a <strong>minimum of 4 characters</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <input formControlName="category" matInput>
+        <mat-error *ngIf="form.controls.category.hasError('required')">
+          Category is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input formControlName="price" matInput>
+        <mat-error *ngIf="form.controls.price.hasError('required')">
+          Price is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Employee</mat-label>
+        <input formControlName="employee" matInput>
+        <mat-error *ngIf="form.controls.employee.hasError('required')">
+          Employee is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls.employee.hasError('minLength')">
+          Employee needs to be a <strong>minimum of 4 characters</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="full-width-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput></textarea>
+        <mat-error *ngIf="form.controls.description.hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls.description.hasError('minLength')">
+          Description needs to be a <strong>minimum of 4 characters</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="full-width-field reviews">
+      <div class="field-title">
+        Reviews
+      </div>
+      <div class="review" *ngFor="let ctr of form.controls.reviews.controls; let i = index">
+        <mat-form-field appearance="outline">
+          <mat-label>Review {{form.controls.reviews.controls.length - i}}</mat-label>
+          <textarea
+            [formControl]="form.controls.reviews.controls[form.controls.reviews.controls.length - i - 1]"
+            matInput></textarea>
+        </mat-form-field>
+        <ng-container [ngSwitch]="i">
+          <button mat-mini-fab color="primary" *ngSwitchCase="0" type="button" (click)="addReview()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" *ngSwitchDefault type="button" (click)="removeReview(i)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </form>
+  <div class="buttons">
+    <button mat-flat-button type="button" (click)="close()">Cancel</button>
+    <button mat-raised-button color="primary" type="button" (click)="onSubmit()">Create</button>
+  </div>
+</section>
+<euris-loader *ngIf="loading$ | async" type="spinner"></euris-loader>

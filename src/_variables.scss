@@ -1,0 +1,76 @@
+$primary-palette: (
+  50 : #e0e6eb,
+  100 : #b3bfce,
+  200 : #8095ae,
+  300 : #4d6b8d,
+  400 : #264b74,
+  500 : #002b5c,
+  600 : #002654,
+  700 : #00204a,
+  800 : #001a41,
+  900 : #001030,
+  A100 : #6988ff,
+  A200 : #3660ff,
+  A400 : #0338ff,
+  A700 : #0031e8,
+  contrast: (
+    50 : #fff9f1,
+    100 : #ffefdc,
+    200 : #ffe4c5,
+    300 : #ffd9ae,
+    400 : #ffd19c,
+    500 : #ffc98b,
+    600 : #ffc383,
+    700 : #ffbc78,
+    800 : #ffb56e,
+    900 : #ffa95b,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #fff1e5,
+  )
+);
+$secondary-palette: (
+  50 : #fff9f1,
+  100 : #ffefdc,
+  200 : #ffe4c5,
+  300 : #ffd9ae,
+  400 : #ffd19c,
+  500 : #ffc98b,
+  600 : #ffc383,
+  700 : #ffbc78,
+  800 : #ffb56e,
+  900 : #ffa95b,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #fff1e5,
+  contrast: (
+    50 : #e0e6eb,
+    100 : #b3bfce,
+    200 : #8095ae,
+    300 : #4d6b8d,
+    400 : #264b74,
+    500 : #002b5c,
+    600 : #002654,
+    700 : #00204a,
+    800 : #001a41,
+    900 : #001030,
+    A100 : #6988ff,
+    A200 : #3660ff,
+    A400 : #0338ff,
+    A700 : #0031e8,
+  )
+);
+
+%custom-scroll {
+  padding-right: 5px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+
+    border-radius: 10px;
+    background: var(--primary-color);
+  }
+}

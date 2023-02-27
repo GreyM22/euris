@@ -1,0 +1,63 @@
+@use '../../../../variables' as *;
+:host {
+  h2 {
+    color: var(--primary-color);
+  }
+  .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 16px;
+    .label {
+      font-weight: bold;
+    }
+  }
+  /* styles for the expansion panel */
+  mat-accordion {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  mat-expansion-panel {
+    box-shadow: none;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    h2 {
+      margin: 0;
+    }
+    button {
+      line-height: 40px;
+      width: 40px;
+      min-width: 32px;
+      display: inline-flex;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+  }
+  ::ng-deep {
+    mat-expansion-panel-header {
+      padding: 0;
+    }
+    .mat-expansion-panel-content {
+      max-height: 30vh;
+      overflow: hidden scroll;
+      @extend %custom-scroll;
+    }
+    .mat-expansion-indicator {
+      width: 12px;
+      display: inline-flex;
+      justify-content: center;
+    }
+    .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
+      background-color: transparent;
+    }
+    mat-panel-title {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+:host {
+  .label {
+    font-weight: bold;
+  }
+  .modal-body {
+    & > div {
+      margin-bottom: 30px;
+    }
+  }
+}

@@ -1,0 +1,129 @@
+
+:host {
+  .top-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    row-gap: 13px;
+    h1 {
+      margin: 0;
+    }
+  }
+  .router-container {
+    height: calc(100% - 80px);
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  .actions {
+    a {
+      transition: all 0.25s ease;
+      &.active {
+        box-shadow: none;
+      }
+    }
+    a, button {
+      color: white;
+    }
+    .panel-view {
+      background-color: #317bcf;
+    }
+    .grid-view {
+      background-color: #d89f78;
+    }
+    .add {
+      background-color: #6cd5f5;
+    }
+  }
+  .pagination {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    padding: 4px 11px 4px 6px;
+    background-color: #f7f7f7;
+    line-height: 15px;
+    /* style for the selector */
+    mat-form-field {
+      width: 25px;
+      height: calc(17px + 8px);
+      display: inline-flex;
+      align-items: center;
+      border-right: 1px solid #eeeeee;
+      margin: -4px 8px -4px 5px;
+    }
+    ::ng-deep {
+      .mat-form-field-wrapper {
+        padding: 0;
+        margin-top: 5px;
+      }
+      .mat-form-field-outline-start, .mat-form-field-outline-end {
+        border: none;
+      }
+      .mat-select-arrow {
+        border: none;
+      }
+      .mat-form-field-wrapper {
+        width: 100%;
+      }
+      .mat-form-field-flex {
+        height: 100%;
+        padding: 0;
+      }
+      .mat-form-field-infix {
+        border: none;
+        padding: 0;
+      }
+    }
+    /* text inside the paginator */
+    span {
+      line-height: 12px;
+      display: block;
+      margin-top: 2px;
+    }
+    /* refresh button */
+    mat-icon {
+      cursor: pointer;
+      color: #b6b6bc;
+      transition: color 0.25s ease;
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  ::ng-deep {
+    @media only screen and (max-width: 510px) {
+      euris-grid-view {
+        justify-content: space-evenly;
+        .card {
+          min-width: 109px!important;
+          padding: 0.5em!important;
+          column-gap: 9px;
+          row-gap: 20px;
+          .actions {
+            column-gap: 15px;
+            button {
+              scale: 1.4;
+            }
+          }
+        }
+      }
+    }
+    @media only screen and (max-width: 410px) {
+      .top-content {
+        margin-bottom: 12px!important;
+        row-gap: 7px!important;
+      }
+      /* reducing table lateral spacing */
+      td.mat-cell:last-of-type {
+        padding-right: 14px;
+      }
+      td.mat-cell:first-of-type {
+        padding-left: 14px;
+      }
+    }
+  }
+
+}

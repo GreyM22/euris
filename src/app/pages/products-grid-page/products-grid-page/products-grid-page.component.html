@@ -1,0 +1,10 @@
+<ng-container *ngIf="products$ | async as products">
+  <euris-grid-view
+    [products]="products"
+    [displayedColumns]="['title', 'category', 'price']"
+    (viewProduct)="viewProduct($event)"
+    (deleteProduct)="deleteProduct($event)"
+  >
+  </euris-grid-view>
+</ng-container>
+<router-outlet></router-outlet>

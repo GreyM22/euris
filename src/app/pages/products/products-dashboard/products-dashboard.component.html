@@ -1,0 +1,52 @@
+<section class="top-content">
+  <h1>Products</h1>
+  <div class="pagination">
+    <mat-icon (click)="makeRefresh()">refresh</mat-icon>
+    <mat-form-field appearance="outline" color="primary">
+      <mat-select [value]="pageSize$ | async" (selectionChange)="setPageSize($event)">
+        <mat-option *ngFor="let opt of pageSizeOptions" [value]="opt">
+          {{opt}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span>
+      {{nrOfProducts$ | async}} / {{totalNrOfProducts$ | async}}
+    </span>
+  </div>
+  <div class="actions">
+    <a
+      mat-mini-fab
+      class="panel-view"
+      routerLink="panel-view"
+      routerLinkActive="active"
+      matTooltip="Panel Layout View"
+      matTooltipPosition="above"
+    >
+      <mat-icon>list</mat-icon>
+    </a>
+    <a
+      mat-mini-fab
+      class="grid-view"
+      routerLink="grid-view"
+      routerLinkActive="active"
+      matTooltip="Grid Layout View"
+      matTooltipPosition="above"
+    >
+      <mat-icon>grid_view</mat-icon>
+    </a>
+    <button mat-mini-fab class="add" (click)="createProduct()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</section>
+<div
+  class="router-container custom-scrollbar"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="0"
+  [scrollWindow]="false"
+  (scrolled)="onTableScroll($event)"
+>
+  <router-outlet></router-outlet>
+  <euris-loader *ngIf="loading$ | async" progressMode="indeterminate" type="progress"></euris-loader>
+</div>

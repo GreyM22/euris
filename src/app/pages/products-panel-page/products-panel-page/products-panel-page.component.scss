@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  height: auto;
+  ::ng-deep {
+    euris-panel-list-view {
+      display: block;
+      thead {
+        position: sticky;
+        top: 0;
+        background: #fafafa;
+        z-index: 1;
+      }
+    }
+  }
+}

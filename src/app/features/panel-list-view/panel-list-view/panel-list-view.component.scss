@@ -1,0 +1,35 @@
+:host {
+  table {
+    height: 100%;
+    width: 100%;
+  }
+  ::ng-deep {
+    .mat-table {
+      background-color: transparent;
+      border-collapse: separate;
+      border-spacing: 0 15px;
+    }
+    th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+      border: none;
+    }
+    tbody {
+      td {
+        background: #eeeeee;
+        &:first-child {
+          border-radius: 10px 0 0 10px;
+        }
+        &:last-child {
+          border-radius: 0 10px 10px 0;
+        }
+      }
+    }
+    .actions {
+      button {
+        scale: 0.7;
+        &.view {
+          background-color: #4d7db5;
+        }
+      }
+    }
+  }
+}

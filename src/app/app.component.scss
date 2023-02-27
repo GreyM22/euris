@@ -1,0 +1,112 @@
+:host {
+  mat-toolbar {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .content {
+    position: relative;
+    height: calc(100vh - 98px);
+    border-radius: 10px;
+    margin: 16px 16px 16px 32px;
+    padding: 3em;
+  }
+
+  mat-sidenav-container {
+    height: calc(100vh - 65px);
+  }
+
+  .menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+
+    mat-icon {
+      margin-right: 8px;
+    }
+
+    &.active {
+      color: #ffc98b;
+    }
+  }
+
+  .category {
+    font-size: 18px;
+    margin-top: 8px;
+    font-weight: normal;
+    text-align: left;
+    padding: 0 16px;
+  }
+
+  .designation {
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color: lightgrey;
+  }
+
+  mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+
+  ::ng-deep {
+    mat-sidenav, mat-toolbar {
+      mat-spinner {
+        display: inline-block;
+        svg {
+          circle {
+            stroke: white;
+          }
+        }
+      }
+    }
+    mat-sidenav {
+      .mat-icon {
+        font-size: 17px;
+        width: 17px;
+        height: 20px;
+      }
+      .more-info {
+        opacity: 0;
+        transition: all 0.25s ease;
+        cursor: pointer;
+      }
+      .category {
+        &:hover {
+          .more-info {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+  }
+
+  @media only screen and (max-width: 510px) {
+    .content {
+      border-radius: 0;
+      margin: 0;
+      height: calc(100vh - 65px);
+      padding: 1em;
+    }
+    mat-toolbar {
+      padding: 0 0.2em;
+    }
+  }
+
+}

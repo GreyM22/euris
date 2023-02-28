@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "euris-12ec4"
+  },
+  "targets": {
+    "euris-12ec4": {
+      "hosting": {
+        "euris-test-project": [
+          "euris-12ec4"
+        ]
+      }
+    }
   }
 }

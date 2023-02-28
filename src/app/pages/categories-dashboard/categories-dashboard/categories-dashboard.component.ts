@@ -18,7 +18,6 @@ export class CategoriesDashboardComponent implements OnInit {
     maintainAspectRatio: false
   };
   public pieChartLegend = true;
-  categories$: Observable<CategoryCount[]> = this.categoriesService.getCategories$();
   data$: Observable<ChartConfiguration<'polarArea'>['data']> = this.categoriesService.getCategories$().pipe(
     map(categories => ({
       labels: categories.reduce<string[]>((acc, draft) => {
@@ -34,7 +33,6 @@ export class CategoriesDashboardComponent implements OnInit {
   );
   loading$: Observable<boolean> = this.categoriesService.loading$();
   ngOnInit(): void {
-    this.categories$.subscribe(r => console.log('categories', r));
   }
 
 }

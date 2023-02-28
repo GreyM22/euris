@@ -12,7 +12,7 @@
         <mat-error *ngIf="form.controls.title.hasError('required')">
           Title is <strong>required</strong>
         </mat-error>
-        <mat-error *ngIf="form.controls.title.hasError('minLength')">
+        <mat-error *ngIf="form.controls.title.hasError('minlength')">
           Title needs to be a <strong>minimum of 4 characters</strong>
         </mat-error>
       </mat-form-field>
@@ -35,10 +35,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Employee</mat-label>
         <input formControlName="employee" matInput>
-        <mat-error *ngIf="form.controls.employee.hasError('required')">
-          Employee is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="form.controls.employee.hasError('minLength')">
+        <mat-error *ngIf="form.controls.employee.hasError('minlength')">
           Employee needs to be a <strong>minimum of 4 characters</strong>
         </mat-error>
       </mat-form-field>
@@ -47,11 +44,8 @@
       <mat-form-field appearance="outline">
         <mat-label>Description</mat-label>
         <textarea formControlName="description" matInput></textarea>
-        <mat-error *ngIf="form.controls.description.hasError('required')">
-          Description is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="form.controls.description.hasError('minLength')">
-          Description needs to be a <strong>minimum of 4 characters</strong>
+        <mat-error *ngIf="form.controls.description.hasError('minlength')">
+          Description needs to be a <strong>minimum of 5 characters</strong>
         </mat-error>
       </mat-form-field>
     </div>
@@ -59,12 +53,16 @@
       <div class="field-title">
         Reviews
       </div>
-      <div class="review" *ngFor="let ctr of form.controls.reviews.controls; let i = index">
+      <div class="review" *ngFor="let ctr of this.reviews.controls; let i = index">
         <mat-form-field appearance="outline">
-          <mat-label>Review {{form.controls.reviews.controls.length - i}}</mat-label>
+          <mat-label>Review {{this.reviews.controls.length - i}}</mat-label>
           <textarea
-            [formControl]="form.controls.reviews.controls[form.controls.reviews.controls.length - i - 1]"
+            [formControl]="this.reviews.controls[this.reviews.controls.length - i - 1]"
             matInput></textarea>
+          <mat-error *ngIf="this.reviews.controls[this.reviews.controls.length - i - 1].hasError('minlength')">
+            Review {{this.reviews.controls.length - i}} needs to be a <strong>minimum of 3 characters</strong>
+          </mat-error>
+
         </mat-form-field>
         <ng-container [ngSwitch]="i">
           <button mat-mini-fab color="primary" *ngSwitchCase="0" type="button" (click)="addReview()">

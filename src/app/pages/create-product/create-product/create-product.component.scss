@@ -20,7 +20,10 @@
     display: flex;
     align-items: center;
     column-gap: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 23px;
+    mat-error {
+      margin-top: 17px;
+    }
     ::ng-deep {
       .mat-form-field-wrapper {
         padding: 0;

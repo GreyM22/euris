@@ -7,7 +7,7 @@ import {ProductsService} from "../../../services/state-data/products.service";
 import {firstValueFrom, Observable, Subject, takeUntil} from "rxjs";
 import {MatDialogRef} from "@angular/material/dialog";
 type ProductForm = {
-  [Property in keyof Omit<Product, 'id' | 'reviews'>]: FormControl<Product[Property]>;
+  [Property in keyof Omit<Required<Product>, 'id' | 'reviews'>]: FormControl<Product[Property]>;
 } & {
   reviews: FormArray<FormControl<NonNullable<Product['reviews']>[number]>>
 };
@@ -33,17 +33,15 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     ),
     category: new FormControl<Product["category"]>('', {nonNullable: true, validators: [Validators.required]}),
     price: new FormControl<Product["price"]>(0, {nonNullable: true, validators: Validators.required}),
-    employee: new FormControl<Product["employee"]>(
+    employee: new FormControl<NonNullable<Product["employee"]>>(
       '',
-      {nonNullable: true, validators: [Validators.required, Validators.minLength(3)]}
+      {nonNullable: true, validators: [Validators.minLength(3)]}
     ),
     description: new FormControl<Product["description"]>(
       '',
-      {nonNullable: true, validators: [Validators.required, Validators.minLength(5)]}
+      {nonNullable: true, validators: [Validators.minLength(5)]}
     ),
-    reviews: new FormArray<FormControl<NonNullable<Product['reviews']>[number]>>([
-      new FormControl<NonNullable<Product["reviews"]>[number]>('', {nonNullable: true})
-    ])
+    reviews: new FormArray<FormControl<NonNullable<Product['reviews']>[number]>>([])
   });
 
   get title(): FormControl<Product["title"]> {
@@ -73,17 +71,21 @@ export class CreateProductComponent implements OnInit, OnDestroy {
       price: obj.price || 0,
       employee: obj.employee || '',
       description: obj.description || '',
-      reviews: obj.reviews || ['']
+      reviews: []
     };
     this.form.patchValue(newProductData);
+    // populate the form array
+    (obj.reviews || ['']).forEach((review: string) => {
+      this.addReview(review);
+    })
     this.form.valueChanges.pipe(
       takeUntil(this.onDestroy$)
     ).subscribe(res => localStorage.setItem(this.localStorageKey, JSON.stringify(res)));
   }
 
-  addReview() {
+  addReview(value = '') {
     this.form.controls.reviews.push(
-      new FormControl<NonNullable<Product['reviews']>[number]>('', {nonNullable: true})
+      new FormControl<NonNullable<Product['reviews']>[number]>(value, {nonNullable: true, validators: [Validators.minLength(3)]})
     );
   }
 
@@ -93,6 +95,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
 
   async onSubmit(): Promise<void> {
     if (this.form.invalid) {
+      console.log('form', this.form);
       this.snackBar.open('Please fill all the data correctly', '', SNACKBAR_OPTIONS);
       return;
     }

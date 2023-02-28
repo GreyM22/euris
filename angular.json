@@ -104,6 +104,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "euris-test-project:build:production",
+            "firebaseProject": "euris-12ec4",
+            "firebaseHostingSite": "euris-12ec4"
+          }
         }
       }
     }

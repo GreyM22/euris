@@ -1,5 +1,6 @@
 <ng-container *ngIf="products$ | async as products">
   <euris-grid-view
+    [@slideIn]
     [products]="products"
     [displayedColumns]="['title', 'category', 'price']"
     (viewProduct)="viewProduct($event)"

@@ -101,7 +101,7 @@ export class ProductsService extends LoadingClass {
       tap(() => this.snackBar.open('Product was created successfully!', '', SNACKBAR_OPTIONS)),
       finalize(() => this.endLoading(this.ADD_PRODUCT)),
       catchError((err, caught) => {
-        this.snackBar.open('Error adding the product!');
+        this.snackBar.open('Error adding the product!', '', SNACKBAR_OPTIONS);
         throw err;
       })
     );

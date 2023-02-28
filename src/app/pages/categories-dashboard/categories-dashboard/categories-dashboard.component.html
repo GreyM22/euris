@@ -1,0 +1,13 @@
+<h2 #title>
+  Categories Stats
+</h2>
+<div class="chart-container" *ngIf="data$ | async as data" [ngStyle]="{'height': 'calc(100% - ' + (title.offsetHeight + 16) + 'px)'}">
+  <canvas  baseChart height="100%"
+          [type]="'polarArea'"
+          [data]="data"
+          [options]="pieChartOptions"
+          [legend]="pieChartLegend">
+  </canvas>
+</div>
+
+<euris-loader *ngIf="loading$ | async"  progressMode="indeterminate" type="progress"></euris-loader>

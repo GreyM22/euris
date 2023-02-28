@@ -1,5 +1,6 @@
 <ng-container *ngIf="products$ | async as products">
   <euris-panel-list-view
+    [@slideIn]
     [products]="products"
     [displayedColumns]="['title', 'category', 'price', 'employee']"
     (viewProduct)="viewProduct($event)"

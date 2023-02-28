@@ -1,5 +1,5 @@
 
-<div class="card" *ngFor="let product of products" [@slideOut]>
+<div class="card" *ngFor="let product of products" [@slideOut]="animation">
   <div class="info" *ngFor="let key of displayedColumns; let i = index" [ngClass]="{'card-title': i === 0}">
     {{product[key]}}
   </div>

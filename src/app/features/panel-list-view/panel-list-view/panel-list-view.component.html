@@ -54,5 +54,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns | addToArray: 'actions'"></tr>
-  <tr [@slideOut] mat-row *matRowDef="let row; columns: displayedColumns | addToArray: 'actions';"></tr>
+  <tr class="row-{{i}}" [@slideOut]="animation" mat-row *matRowDef="let row; columns: displayedColumns | addToArray: 'actions';let i = index"></tr>
 </table>

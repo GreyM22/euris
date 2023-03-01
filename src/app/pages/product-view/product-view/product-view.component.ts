@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {combineLatest, delay, firstValueFrom, map, Observable} from "rxjs";
 import {Product} from "../../../interfaces/product.interface";
-import {ProductsService} from "../../../services/state-data/products.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialogRef} from "@angular/material/dialog";
+import {Store} from "@ngxs/store";
+import {ProductsState} from "../../../core/state/products/products.state";
+import {ProductsActions} from "../../../core/state/products/products.actions";
 
 @Component({
   selector: 'euris-product-view',
@@ -14,16 +16,16 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class ProductViewComponent implements OnInit {
 
   constructor(
-    private productService: ProductsService,
+    private store: Store,
     private route: ActivatedRoute,
     private dialogRef: MatDialogRef<ProductViewComponent>
   ) {
   }
   readonly fields: (keyof Product)[] = ['category', 'price', 'employee'];
-  readonly product$: Observable<Product> = this.productService.getActiveProduct$();
+  readonly product$: Observable<Product> = this.store.select(ProductsState.GetActiveProduct());
   readonly loading$: Observable<boolean> = combineLatest([
-    this.productService.loading$(this.productService.GET_PRODUCT),
-    this.productService.loading$(this.productService.DELETE_PRODUCT)
+    this.store.select(ProductsState.Loading(ProductsActions.GetProduct.type)),
+    this.store.select(ProductsState.Loading(ProductsActions.DeleteProduct.type)),
   ]).pipe(
     map(([getting, deleting]) => getting || deleting)
   );
@@ -32,7 +34,7 @@ export class ProductViewComponent implements OnInit {
   }
 
   async deleteProduct(id: Product['id']) {
-    await firstValueFrom(this.productService.deleteProduct$(id));
+    await firstValueFrom(this.store.dispatch(new ProductsActions.DeleteProduct(id)));
     this.dialogRef.close();
   }
 

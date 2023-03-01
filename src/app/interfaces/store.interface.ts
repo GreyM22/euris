@@ -1,4 +1,4 @@
-export interface Store {
+export interface StoreData {
   id: string;
   name: string;
   category: string;

@@ -1,7 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ProductsService} from "../../../services/state-data/products.service";
-import {Observable} from "rxjs";
-import {Product} from "../../../interfaces/product.interface";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ProductsBasePage} from "../../../models/products-page/products-base-page.class";
 import {animate, query, stagger, style, transition, trigger} from "@angular/animations";
 

@@ -1,8 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {ProductsService} from "../../../services/state-data/products.service";
 import {firstValueFrom, Observable, Subject, takeUntil} from "rxjs";
 import {Router} from "@angular/router";
 import {MatSelectChange} from "@angular/material/select";
+import {Store} from "@ngxs/store";
+import {ProductsState} from "../../../core/state/products/products.state";
+import {ProductsActions} from "../../../core/state/products/products.actions";
 
 @Component({
   selector: 'euris-products-dashboard',
@@ -10,42 +12,36 @@ import {MatSelectChange} from "@angular/material/select";
   styleUrls: ['./products-dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductsDashboardComponent implements OnInit, OnDestroy {
+export class ProductsDashboardComponent implements OnInit {
 
-  constructor(private productsService: ProductsService, private router: Router) { }
+  constructor(private store: Store, private router: Router) { }
 
-  readonly loading$: Observable<boolean> = this.productsService.loading$(this.productsService.GET_PRODUCTS);
+  readonly loading$: Observable<boolean> = this.store.select(ProductsState.Loading(ProductsActions.LoadProductsPage.type));
   readonly pageSizeOptions: number[] = [5, 10, 20, 50];
-  readonly nrOfProducts$ = this.productsService.nrOfProducts$;
-  readonly totalNrOfProducts$ = this.productsService.totalNrOfProducts$;
-  readonly pageSize$ = this.productsService.pageSize$;
+  readonly nrOfProducts$ = this.store.select(ProductsState.GetNrOfProducts());
+  readonly totalNrOfProducts$ = this.store.select(ProductsState.GetTotalNrOfProducts());
+  readonly pageSize$ = this.store.select(ProductsState.PageSize());
 
   ngOnInit(): void {
-    this.getFirstPage();
-  }
-
-  async getFirstPage() {
-    await firstValueFrom(this.productsService.getFirstProductPage$());
+    const products = this.store.selectSnapshot(ProductsState.GetProducts());
+    if (!products.length) {
+      this.store.dispatch(new ProductsActions.GetFirstProductsPage());
+    }
   }
 
   createProduct() {
     this.router.navigate([this.router.url, 'create-new']);
   }
 
-  async onTableScroll(e: any): Promise<void> {
-    await firstValueFrom(this.productsService.getNextProductPage$());
+  onTableScroll(e: any) {
+    this.store.dispatch(new ProductsActions.GetNextProductsPage());
   }
 
-  async makeRefresh(): Promise<void> {
-    this.productsService.clear();
-    await this.getFirstPage();
+  makeRefresh() {
+    this.store.dispatch(new ProductsActions.MakeRefresh());
   }
 
-  async setPageSize(e: MatSelectChange) {
-    await firstValueFrom(this.productsService.setPageSize$(e.value));
-  }
-
-  ngOnDestroy() {
-    this.productsService.clear();
+  setPageSize(e: MatSelectChange) {
+    this.store.dispatch(new ProductsActions.SetPageSize(e.value));
   }
 }

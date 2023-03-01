@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {StoreService} from "../../../services/state-data/store.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {Store} from "../../../interfaces/store.interface";
+import {StoreData} from "../../../interfaces/store.interface";
 
 @Component({
   selector: 'euris-store-view',
@@ -11,7 +10,7 @@ import {Store} from "../../../interfaces/store.interface";
 })
 export class StoreViewComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public store: Store) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public store: StoreData) { }
 
   ngOnInit(): void {
   }

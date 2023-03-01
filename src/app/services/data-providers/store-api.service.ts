@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Store} from "../../interfaces/store.interface";
+import {StoreData} from "../../interfaces/store.interface";
 import { ApiHandler } from '../../models/api/api-handler.abstract';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class StoreApiService extends ApiHandler {
     super();
   }
 
-  getStore(): Observable<Store> {
-    return this.http.get<Store>(this.endpoint);
+  getStore(): Observable<StoreData> {
+    return this.http.get<StoreData>(this.endpoint);
   }
 }

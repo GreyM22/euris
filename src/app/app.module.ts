@@ -14,6 +14,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {StoreViewModule} from "./modals/store-view/store-view.module";
 import {MatDialogModule} from "@angular/material/dialog";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatSnackBarModule,
     MatProgressSpinnerModule,
     StoreViewModule,
-    MatDialogModule
+    MatDialogModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,13 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
 import {BreakpointObserver} from "@angular/cdk/layout";
-import {StoreService} from "./services/state-data/store.service";
-import {map, Observable, shareReplay} from "rxjs";
-import {Store} from "./interfaces/store.interface";
+import {filter, map, Observable, shareReplay} from "rxjs";
+import {StoreData} from "./interfaces/store.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {StoreViewComponent} from "./modals/store-view/store-view/store-view.component";
+import {Store} from "@ngxs/store";
+import {StoreState} from "./core/state/store/store.state";
+import {StoreActions} from "./core/state/store/store.actions";
 
 @Component({
   selector: 'app-root',
@@ -13,18 +15,24 @@ import {StoreViewComponent} from "./modals/store-view/store-view/store-view.comp
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   constructor(
     private observer: BreakpointObserver,
-    private store: StoreService,
+    private store: Store,
+    // private store: StoreService,
     public dialog: MatDialog
   ) {
   }
-  readonly store$: Observable<Store> = this.store.getStore$().pipe(
+  readonly store$: Observable<StoreData> = this.store.select(StoreState.GetStore()).pipe(
+    filter((store): store is StoreData => !!store),
     shareReplay()
   );
+
+  ngOnInit() {
+    this.store.dispatch(new StoreActions.GetStore());
+  }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -38,8 +46,8 @@ export class AppComponent implements AfterViewInit {
     });
   }
 
-  viewStore(store: Store) {
-    this.dialog.open<StoreViewComponent, Store, undefined>(StoreViewComponent, {
+  viewStore(store: StoreData) {
+    this.dialog.open<StoreViewComponent, StoreData, undefined>(StoreViewComponent, {
       data: store,
       panelClass: 'modal-page',
       minWidth: '40vw'

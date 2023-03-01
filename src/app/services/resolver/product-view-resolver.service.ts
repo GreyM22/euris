@@ -5,17 +5,18 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import {ProductsService} from "../state-data/products.service";
+import {Store} from "@ngxs/store";
+import {ProductsActions} from "../../core/state/products/products.actions";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductViewResolver implements Resolve<boolean> {
-  constructor(private productService: ProductsService) {
+  constructor(private store: Store) {
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     if (route.paramMap.has('productId')) {
-      this.productService.setActiveProduct(route.paramMap.get('productId') as string)
+      this.store.dispatch(new ProductsActions.SetActiveProduct(route.paramMap.get('productId') as string));
       return of(true);
     }
     return of(false);

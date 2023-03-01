@@ -3,9 +3,11 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from "../../../interfaces/product.interface";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SNACKBAR_OPTIONS} from "../../../consts/snackbar/snackbar.options";
-import {ProductsService} from "../../../services/state-data/products.service";
 import {firstValueFrom, Observable, Subject, takeUntil} from "rxjs";
 import {MatDialogRef} from "@angular/material/dialog";
+import {Store} from "@ngxs/store";
+import {ProductsState} from "../../../core/state/products/products.state";
+import {ProductsActions} from "../../../core/state/products/products.actions";
 type ProductForm = {
   [Property in keyof Omit<Required<Product>, 'id' | 'reviews'>]: FormControl<Product[Property]>;
 } & {
@@ -20,12 +22,12 @@ type ProductForm = {
 export class CreateProductComponent implements OnInit, OnDestroy {
   constructor(
     private snackBar: MatSnackBar,
-    private productService: ProductsService,
+    private store: Store,
     private dialogRef: MatDialogRef<CreateProductComponent>
   ) { }
   private readonly localStorageKey = 'create-product-value';
   private readonly onDestroy$ = new Subject<void>();
-  readonly loading$: Observable<boolean> = this.productService.loading$(this.productService.ADD_PRODUCT);
+  readonly loading$: Observable<boolean> = this.store.select(ProductsState.Loading(ProductsActions.AddProduct.type));
   readonly form: FormGroup<ProductForm> = new FormGroup<ProductForm>({
     title: new FormControl<Product["title"]>(
       '',
@@ -105,14 +107,14 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     const employee = this.employee.value
     const description = this.description.value
     const reviews = this.reviews.value
-    await firstValueFrom(this.productService.addProduct$({
+    await firstValueFrom(this.store.dispatch(new ProductsActions.AddProduct({
       title,
       category,
       price,
       employee,
       description,
       reviews
-    }));
+    })));
     this.close();
   }
 

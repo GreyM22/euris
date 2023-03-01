@@ -1,26 +1,28 @@
 import { Directive } from '@angular/core';
-import {ProductsService} from "../../services/state-data/products.service";
 import {firstValueFrom, Observable} from "rxjs";
 import {Product} from "../../interfaces/product.interface";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Store} from "@ngxs/store";
+import {ProductsActions} from "../../core/state/products/products.actions";
+import {ProductsState} from "../../core/state/products/products.state";
 
 @Directive()
 export class ProductsBasePage {
 
   constructor(
-    private productsService: ProductsService,
+    private store: Store,
     private router: Router
     ) {
   }
-  readonly products$: Observable<Product[]> = this.productsService.products$;
+  readonly products$: Observable<Product[]> = this.store.select(ProductsState.GetProducts());
 
   viewProduct(id: string) {
     this.router.navigate([this.router.url, id]);
   }
 
-  async deleteProduct(id: string) {
-    await firstValueFrom(this.productsService.deleteProduct$(id));
+  deleteProduct(id: string) {
+    this.store.dispatch(new ProductsActions.DeleteProduct(id));
   }
 
 }

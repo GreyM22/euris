@@ -10,7 +10,7 @@ import {MatSelectChange} from "@angular/material/select";
   styleUrls: ['./products-dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductsDashboardComponent implements OnInit {
+export class ProductsDashboardComponent implements OnInit, OnDestroy {
 
   constructor(private productsService: ProductsService, private router: Router) { }
 
@@ -43,5 +43,9 @@ export class ProductsDashboardComponent implements OnInit {
 
   async setPageSize(e: MatSelectChange) {
     await firstValueFrom(this.productsService.setPageSize$(e.value));
+  }
+
+  ngOnDestroy() {
+    this.productsService.clear();
   }
 }

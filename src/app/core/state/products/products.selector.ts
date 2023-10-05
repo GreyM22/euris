@@ -1,7 +1,7 @@
 import {createSelector} from "@ngxs/store";
 import {ProductsState} from "./products.state";
 import {ProductsModel} from "./products.model";
-import {Product} from "../../../interfaces/product.interface";
+import {Product} from "../../interfaces/product.interface";
 
 export abstract class ProductsSelector {
   public static PageSize() {

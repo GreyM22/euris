@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Product} from "../../../interfaces/product.interface";
+import {Product} from "../../../core/interfaces/product.interface";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {SNACKBAR_OPTIONS} from "../../../consts/snackbar/snackbar.options";
 import {firstValueFrom, Observable, Subject, takeUntil} from "rxjs";
 import {MatDialogRef} from "@angular/material/dialog";
 import {Store} from "@ngxs/store";
 import {ProductsState} from "../../../core/state/products/products.state";
 import {ProductsActions} from "../../../core/state/products/products.actions";
+import {SNACKBAR_OPTIONS} from "../../../core/consts/snackbar/snackbar.options";
 type ProductForm = {
   [Property in keyof Omit<Required<Product>, 'id' | 'reviews'>]: FormControl<Product[Property]>;
 } & {

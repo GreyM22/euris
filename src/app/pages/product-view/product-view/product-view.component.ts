@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {combineLatest, delay, firstValueFrom, map, Observable} from "rxjs";
-import {Product} from "../../../interfaces/product.interface";
+import {Product} from "../../../core/interfaces/product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialogRef} from "@angular/material/dialog";
 import {Store} from "@ngxs/store";

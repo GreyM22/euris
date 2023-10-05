@@ -1,14 +1,14 @@
 import {ProductsModel} from "./products.model";
 import {Action, State, StateContext} from "@ngxs/store";
-import {Product} from "../../../interfaces/product.interface";
+import {Product} from "../../interfaces/product.interface";
 import {Injectable} from "@angular/core";
-import {ProductsApiService} from "../../../services/data-providers/products-api.service";
+import {ProductsApiService} from "../../services/data-providers/products-api.service";
 import {ProductsActions} from "./products.actions";
 import {catchError, finalize, tap} from "rxjs";
-import {SNACKBAR_OPTIONS} from "../../../consts/snackbar/snackbar.options";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import produce from "immer";
 import {ProductsSelector} from "./products.selector";
+import {SNACKBAR_OPTIONS} from "../../consts/snackbar/snackbar.options";
 
 @State<ProductsModel.State>({
   name: 'products',

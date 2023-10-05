@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ProductsView} from "../../../models/products-view/products-view.class";
+import {ProductsView} from "../../../core/models/products-view/products-view.class";
 
 @Component({
   selector: 'euris-grid-view',

@@ -4,7 +4,7 @@ import { ProductsPanelPageComponent } from './products-panel-page/products-panel
 import {RouterModule, Routes} from "@angular/router";
 import {PanelListViewModule} from "../../features/panel-list-view/panel-list-view.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {ProductViewResolver} from "../../services/resolver/product-view-resolver.service";
+import {ProductViewResolver} from "../../core/services/resolver/product-view-resolver.service";
 
 
 const childRoutes: Routes = [

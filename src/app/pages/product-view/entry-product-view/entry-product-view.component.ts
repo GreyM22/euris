@@ -3,7 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ProductViewComponent} from "../product-view/product-view.component";
 import {Subject, takeUntil} from "rxjs";
 import {Router} from "@angular/router";
-import {ModalPage} from "../../../models/modal-page/modal-page.class";
+import {ModalPage} from "../../../core/models/modal-page/modal-page.class";
 
 @Component({
   template: '',

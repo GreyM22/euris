@@ -2,7 +2,7 @@ import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild} fr
 import {MatSidenav} from "@angular/material/sidenav";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {filter, map, Observable, shareReplay} from "rxjs";
-import {StoreData} from "./interfaces/store.interface";
+import {StoreData} from "./core/interfaces/store.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {StoreViewComponent} from "./modals/store-view/store-view/store-view.component";
 import {Store} from "@ngxs/store";

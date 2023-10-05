@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {CategoriesService} from "../../../services/state-data/categories.service";
+import {CategoriesService} from "../../../core/services/state-data/categories.service";
 import {map, Observable} from "rxjs";
-import {CategoryCount} from "../../../interfaces/category-count.interface";
+import {CategoryCount} from "../../../core/interfaces/category-count.interface";
 import {ChartConfiguration, ChartOptions} from "chart.js";
 
 @Component({

@@ -2,7 +2,7 @@ import {Directive, OnDestroy, OnInit, Type} from "@angular/core";
 import {Subject, takeUntil} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProductViewComponent} from "../../pages/product-view/product-view/product-view.component";
+import {ProductViewComponent} from "../../../pages/product-view/product-view/product-view.component";
 import {ComponentType} from "@angular/cdk/portal";
 
 @Directive()

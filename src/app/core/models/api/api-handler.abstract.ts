@@ -1,4 +1,4 @@
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
 import {HttpParams, HttpParamsOptions} from "@angular/common/http";
 
 export abstract class ApiHandler {

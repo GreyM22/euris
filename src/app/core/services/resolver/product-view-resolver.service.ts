@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import {Store} from "@ngxs/store";
-import {ProductsActions} from "../../core/state/products/products.actions";
+import {ProductsActions} from "../../state/products/products.actions";
 
 @Injectable({
   providedIn: 'root'

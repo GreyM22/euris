@@ -1,4 +1,4 @@
-import {StoreData} from "../../../interfaces/store.interface";
+import {StoreData} from "../../interfaces/store.interface";
 
 export module StoreModel {
   export interface State {

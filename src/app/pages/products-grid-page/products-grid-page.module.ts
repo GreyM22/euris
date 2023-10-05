@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsGridPageComponent } from './products-grid-page/products-grid-page.component';
 import {RouterModule, Routes} from "@angular/router";
 import {GridViewModule} from "../../features/grid-view/grid-view.module";
-import {ProductViewResolver} from "../../services/resolver/product-view-resolver.service";
+import {ProductViewResolver} from "../../core/services/resolver/product-view-resolver.service";
 
 
 const childRoutes: Routes = [

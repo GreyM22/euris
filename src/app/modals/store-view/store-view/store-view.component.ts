@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {StoreData} from "../../../interfaces/store.interface";
+import {StoreData} from "../../../core/interfaces/store.interface";
 
 @Component({
   selector: 'euris-store-view',

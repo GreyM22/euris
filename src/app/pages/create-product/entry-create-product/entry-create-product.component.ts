@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {ModalPage} from "../../../models/modal-page/modal-page.class";
+import {ModalPage} from "../../../core/models/modal-page/modal-page.class";
 import {CreateProductComponent} from "../create-product/create-product.component";
 
 @Component({

@@ -4,8 +4,8 @@ import {Product} from "../../interfaces/product.interface";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {Store} from "@ngxs/store";
-import {ProductsActions} from "../../core/state/products/products.actions";
-import {ProductsState} from "../../core/state/products/products.state";
+import {ProductsActions} from "../../state/products/products.actions";
+import {ProductsState} from "../../state/products/products.state";
 
 @Directive()
 export class ProductsBasePage {

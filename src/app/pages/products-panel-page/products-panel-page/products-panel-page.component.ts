@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ProductsBasePage} from "../../../models/products-page/products-base-page.class";
+import {ProductsBasePage} from "../../../core/models/products-page/products-base-page.class";
 import {animate, query, stagger, style, transition, trigger} from "@angular/animations";
 
 @Component({
